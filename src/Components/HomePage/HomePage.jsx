@@ -9,6 +9,7 @@ import { Pagination } from 'antd';
 
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+import { useStore } from '../../hooks/useStore';
 
 const cx = classNames.bind(styles);
 
@@ -56,14 +57,24 @@ function HomePage() {
     const [dataNewPost, setDataNewPost] = useState([]);
     const [dataPostSuggest, setDataPostSuggest] = useState([]);
 
+    const { dataUser } = useStore();
+
     useEffect(() => {
         const fetchData = async () => {
             const res = await requestGetNewPost();
-            const resSuggest = await requestPostSuggest();
+
             setDataNewPost(res.metadata);
+        };
+
+        const fetchData2 = async () => {
+            const resSuggest = await requestPostSuggest();
             setDataPostSuggest(resSuggest.metadata);
         };
+
         fetchData();
+
+        if (!dataUser._id) return;
+        fetchData2();
     }, []);
 
     const [currentPage, setCurrentPage] = useState(1); // page hiện tại

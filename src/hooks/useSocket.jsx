@@ -15,6 +15,8 @@ export const useSocket = () => {
     const socketRef = useRef();
 
     useEffect(() => {
+        if (!dataUser._id) return;
+
         socketRef.current = io(import.meta.env.VITE_SOCKET_URL, {
             transports: ['websocket'],
             withCredentials: true,
@@ -56,6 +58,7 @@ export const useSocket = () => {
             const res = await requestGetMessagesByUserId();
             setDataMessagersUser(res.metadata);
         };
+        if (!dataUser._id) return;
         fetchMessages();
     }, [dataUser._id]);
 
