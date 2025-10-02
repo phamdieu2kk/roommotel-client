@@ -7,7 +7,7 @@ export const useSocket = () => {
     const [dataPayment, setDataPayment] = useState(null);
     const [dataFavourite, setDataFavourite] = useState(null);
     const [dataMessagersUser, setDataMessagersUser] = useState([]);
-    const { globalUsersMessage, setGlobalUsersMessage } = useStore();
+    const { globalUsersMessage, setGlobalUsersMessage, dataUser } = useStore();
     const [newMessage, setNewMessage] = useState(null);
     const [newUserMessage, setNewUserMessage] = useState(null);
     const [messagesRead, setMessagesRead] = useState(null);
@@ -57,7 +57,7 @@ export const useSocket = () => {
             setDataMessagersUser(res.metadata);
         };
         fetchMessages();
-    }, [newUserMessage]);
+    }, [newUserMessage, dataUser._id]);
 
     // Khi có tin nhắn mới, cập nhật nội dung chat
     useEffect(() => {
