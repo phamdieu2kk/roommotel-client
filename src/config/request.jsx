@@ -3,7 +3,7 @@ import axios from 'axios';
 import cookies from 'js-cookie';
 
 const request = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: import.meta.env.VITE_SOCKET_URL,
     withCredentials: true,
 });
 
@@ -241,7 +241,7 @@ let isRefreshing = false;
 let failedRequestsQueue = [];
 
 request.interceptors.response.use(
-    (response) => response, 
+    (response) => response,
     async (error) => {
         const originalRequest = error.config;
 
@@ -259,7 +259,7 @@ request.interceptors.response.use(
                     }
                     await requestRefreshToken();
 
-                    // Xử lý lại request bị lỗi 401 
+                    // Xử lý lại request bị lỗi 401
                     failedRequestsQueue.forEach((req) => req.resolve());
                     failedRequestsQueue = [];
                 } catch (refreshError) {
@@ -267,7 +267,7 @@ request.interceptors.response.use(
                     failedRequestsQueue.forEach((req) => req.reject(refreshError));
                     failedRequestsQueue = [];
                     localStorage.clear();
-                    window.location.href = '/login'; 
+                    window.location.href = '/login';
                 } finally {
                     isRefreshing = false;
                 }
