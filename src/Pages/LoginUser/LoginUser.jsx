@@ -45,6 +45,12 @@ function LoginUser() {
         try {
             const res = await requestLoginGoogle({ credential });
             message.success(res.message);
+            cookie.set('logged', '1', {
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                path: '/',
+                secure: false,
+                sameSite: 'Lax',
+            });
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
