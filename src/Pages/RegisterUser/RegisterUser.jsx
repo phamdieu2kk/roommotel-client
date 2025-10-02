@@ -2,13 +2,15 @@ import classNames from 'classnames/bind';
 import styles from './RegisterUser.module.scss';
 import Header from '../../Components/Header/Header';
 import { Form, Input, Button, Tabs, Typography, message } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, AimOutlined  } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined, AimOutlined } from '@ant-design/icons';
 
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const cx = classNames.bind(styles);
 const { TabPane } = Tabs;
 const { Text } = Typography;
+
+import cookie from 'js-cookie';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -30,6 +32,12 @@ function RegisterUser() {
         try {
             const res = await requestRegister(data);
             message.success(res.metadata.message);
+            cookie.set('logged', '1', {
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                path: '/',
+                secure: false,
+                sameSite: 'Lax',
+            });
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
@@ -40,7 +48,7 @@ function RegisterUser() {
     };
 
     const handleSuccess = async (response) => {
-        const { credential } = response; 
+        const { credential } = response;
         try {
             const res = await requestLoginGoogle({ credential });
             message.success(res.message);
@@ -121,7 +129,6 @@ function RegisterUser() {
                                         />
                                     </GoogleOAuthProvider>
                                 </Form.Item>
-
                             </Form>
                         </TabPane>
                     </Tabs>

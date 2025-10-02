@@ -14,6 +14,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { requestLogin, requestLoginGoogle } from '../../config/request';
 
+import cookie from 'js-cookie';
+
 function LoginUser() {
     const [form] = Form.useForm();
 
@@ -23,6 +25,12 @@ function LoginUser() {
         try {
             const res = await requestLogin(values);
             message.success(res.message);
+            cookie.set('logged', '1', {
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                path: '/',
+                secure: false,
+                sameSite: 'Lax',
+            });
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
@@ -108,7 +116,6 @@ function LoginUser() {
                                         />
                                     </GoogleOAuthProvider>
                                 </Form.Item>
-
                             </Form>
                         </TabPane>
                     </Tabs>
