@@ -57,7 +57,7 @@ export const useSocket = () => {
             setDataMessagersUser(res.metadata);
         };
         fetchMessages();
-    }, [newUserMessage, dataUser._id]);
+    }, [dataUser._id]);
 
     // Khi có tin nhắn mới, cập nhật nội dung chat
     useEffect(() => {
