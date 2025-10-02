@@ -1,0 +1,41 @@
+.card {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 8px;
+  color: #1677ff;
+}
+
+.heading {
+  margin: 0;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.title {
+  color: #1677ff;
+  font-weight: 500;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #0050b3;
+  }
+}
+
+.delete-btn {
+  border-color: #ff4d4f !important;
+  background: rgba(255, 77, 79, 0.08) !important;
+}

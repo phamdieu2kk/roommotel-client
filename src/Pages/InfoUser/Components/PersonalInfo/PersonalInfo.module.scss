@@ -1,0 +1,81 @@
+.info-card {
+  border-radius: 12px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 12px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.info-icon {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background: #e6f4ff; 
+  color: #1890ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 2px;
+  }
+
+  .value {
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+  }
+}
+
+.edit-btn {
+  background-color: #faad14;
+  border-color: #faad14;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #ffc53d !important;
+    border-color: #ffc53d !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+}
+
+:global {
+  .ant-modal-footer {
+    .ant-btn-primary {
+      background-color: #ff4d4f;
+      border-color: #ff4d4f;
+
+      &:hover,
+      &:focus {
+        background-color: #ff7875; // đỏ nhạt hơn khi hover
+        border-color: #ff7875;
+      }
+    }
+  }
+}
+
+

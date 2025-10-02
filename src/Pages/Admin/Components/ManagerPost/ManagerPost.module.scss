@@ -1,0 +1,29 @@
+.approve-btn {
+    background-color: #52c41a;
+    border-color: #52c41a;
+    color: #fff;
+
+    &:hover {
+        background-color: #389e0d;
+        border-color: #389e0d;
+    }
+}
+
+.close-button-wrapper {
+    margin-top: 24px;
+    text-align: end;
+}
+
+.close-button {
+    background-color: red;
+    color: white;
+    border-color: red;
+
+    &:hover,
+    &:focus {
+        background-color: #ff4d4f; 
+        border-color: #ff4d4f;
+        color: white;
+    }
+}
+
